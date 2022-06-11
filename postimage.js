@@ -17,7 +17,7 @@ import { getAccount } from "./accounts.js";
 export default function () {
 
   const account = getAccount()
-  const login_res = http.post(url("/login"), {
+  const res = http.post(url("/login"), {
     account_name: account.account_name,
     password: account.password,
   });

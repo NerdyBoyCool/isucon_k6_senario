@@ -34,13 +34,13 @@ export default function() {
     "is status 200": (r) => r.status === 200,
   });
   // ユーザーページ /@terra をGET
-  const res = http.get(url("/@terra"));
+  const res = http.get(url(`/@${account.account_name}`));
 
   // レスポンスの内容をHTMLとして解釈
   const doc = parseHTML(res.body);
 
   // フォームのhidden要素からcsrf_token, post_idを抽出
-  const token = doc.fnd('input[name="csrf_token"]').first().attr("value");
+  const token = doc.find('input[name="csrf_token"]').first().attr("value");
   const post_id = doc.find('input[name="post_id"]').first().attr("value");
 
   // /comment に対して、post_id, csrf_token とともにコメント本文をPOST
